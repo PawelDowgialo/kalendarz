@@ -7,34 +7,52 @@ import { useState } from 'react'
 export default function App() {
   const [selectedDate, setSelectedDate] = useState('')
 
+  const wydarzenia = {
+    '2023-04-16':[{opis:"twoja babcia"}],
+    '2023-04-20':[{opis:"twoj dziadek"}]
+  }
+
   function selectedDateHandler(day){
     setSelectedDate(day.dateString)
   }
+
+  function renderPustaData(){
+    return(
+      <View>
+        <Text>
+          tak
+        </Text>
+      </View>
+    )
+  }
+
+  function renderWydarzenia(wyd){
+    return(
+      <View>
+        <Text>
+          {wyd.opis}
+        </Text>
+      </View>
+    )
+  }
   return (
     <View style={styles.container}>
-      <CalendarList
-      current='2023-01-01'
-      minDate='2022-01-01'
-      maxDate={'2024-01-01'}
-      onDayPress={selectedDateHandler}
-        markedDates={{
-          [selectedDate]:{selected: true, selectedColor: 'orange'},
-            '2023-04-08':{marked: true},
-            '2023-04-15':{selected: true},
-            '2023-04-18':{marked: true, dotColor: 'red'},
-            '2023-04-5':{selected: true, selectedTextColor: 'red', selectedColor: 'red'}
-          }
-        }
+      <Agenda
+        items={wydarzenia}
+        renderItem={renderWydarzenia}
+        renderEmptyData={renderPustaData}
       />
+      
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: 600,
+    backgroundColor: '#fff'
   },
 });
