@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { useState } from 'react'
 
 export default function App() {
@@ -12,14 +12,17 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
-      <Calendar
+      <CalendarList
+      current='2023-01-01'
+      minDate='2022-01-01'
+      maxDate={'2024-01-01'}
       onDayPress={selectedDateHandler}
         markedDates={{
           [selectedDate]:{selected: true, selectedColor: 'orange'},
             '2023-04-08':{marked: true},
             '2023-04-15':{selected: true},
             '2023-04-18':{marked: true, dotColor: 'red'},
-            '2023-04-5':{selected: true, selectedTextColor: 'white', selectedColor: 'red'}
+            '2023-04-5':{selected: true, selectedTextColor: 'red', selectedColor: 'red'}
           }
         }
       />
